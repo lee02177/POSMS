@@ -1,0 +1,43 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:shrinkColumns="0"
+        android:stretchColumns="1"
+        android:padding="3dip">
+
+        <TableRow>
+            <TextView
+                android:id="@+id/noti_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                android:textStyle="bold"
+                android:text="This is long long long long long long long long long long long header" />
+
+            <TextView
+                android:id="@+id/noti_dt"
+                android:layout_width="130dp"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textSize="11dp"
+                android:text="dd/MM/yyyy HH:mm:ss" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/noti_detl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Here is more more more more more more more more more more content."
+                android:padding="3dip"
+                android:layout_span="2"/>
+        </TableRow>
+    </TableLayout>
+</LinearLayout>
