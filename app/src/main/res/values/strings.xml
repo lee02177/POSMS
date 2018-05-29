@@ -3,6 +3,7 @@
     <string name="title_account">Account</string>
     <string name="title_category">Category</string>
     <string name="title_dashboard">Dashboard</string>
+    <string name="title_favorite">Favorite</string>
     <string name="title_home">Home</string>
     <string name="title_order">Order</string>
     <string name="title_notifications" translatable="false">Notifications</string>

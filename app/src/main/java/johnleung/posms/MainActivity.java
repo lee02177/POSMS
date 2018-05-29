@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import johnleung.posms.adapter.MainFragmentAdapter;
 import johnleung.posms.fragment.AccountFragment;
+import johnleung.posms.fragment.FavoriteFragment;
 import johnleung.posms.fragment.HomeFragment;
 import johnleung.posms.fragment.NotificationsFragment;
 import johnleung.posms.fragment.OrderFragment;
@@ -17,6 +18,7 @@ import johnleung.posms.fragment.OrderFragment;
 public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private HomeFragment homeFragment;
+    private FavoriteFragment favoriteFragment;
     private OrderFragment orderFragment;
     private NotificationsFragment notificationsFragment;
     private AccountFragment accountFragment;
@@ -36,17 +38,21 @@ public class MainActivity extends AppCompatActivity {
                     return true;
 //                case R.id.navigation_dashboard:
 //                    return true;
+                case R.id.navigation_favorite:
+                    setTitle("My Favorite");
+                    mViewPager.setCurrentItem(1);
+                    return true;
                 case R.id.navigation_order:
                     setTitle("My Order");
-                    mViewPager.setCurrentItem(1);
+                    mViewPager.setCurrentItem(2);
                     return true;
                 case R.id.navigation_notifications:
                     setTitle("Notification");
-                    mViewPager.setCurrentItem(2);
+                    mViewPager.setCurrentItem(3);
                     return true;
                 case R.id.navigation_account:
                     setTitle("Hi, User Name!");
-                    mViewPager.setCurrentItem(3);
+                    mViewPager.setCurrentItem(4);
                     return true;
             }
             return false;
@@ -95,16 +101,16 @@ public class MainActivity extends AppCompatActivity {
     {
         MainFragmentAdapter adapter = new MainFragmentAdapter(getSupportFragmentManager());
         homeFragment = new HomeFragment();
+        favoriteFragment = new FavoriteFragment();
         orderFragment = new OrderFragment();
         notificationsFragment = new NotificationsFragment();
         accountFragment = new AccountFragment();
         adapter.addFragment(homeFragment);
+        adapter.addFragment(favoriteFragment);
         adapter.addFragment(orderFragment);
         adapter.addFragment(notificationsFragment);
         adapter.addFragment(accountFragment);
         viewPager.setAdapter(adapter);
-//        if (!isViewPageScrollable)
-//            viewPager.setOnTouchListener(null);
     }
 
 }
