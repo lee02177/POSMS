@@ -1,7 +1,9 @@
 package johnleung.posms.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import johnleung.posms.R;
+
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
 
 public class AccountFragment extends Fragment {
     private View mView;
@@ -23,8 +28,17 @@ public class AccountFragment extends Fragment {
         btnScanQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mView.getContext(),
-                    "Button clicked ", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(mView.getContext(),
+//                    "Button clicked ", Toast.LENGTH_SHORT).show();
+
+                Log.d("ACTION","Scan QR Code Button Clicked");
+
+                Intent intent = new Intent();
+                intent.setPackage("com.google.zxing.client.android");
+                intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
+                startActivityForResult(intent, 0);
+
+
             }
         });
 
@@ -33,6 +47,19 @@ public class AccountFragment extends Fragment {
         return mView;
 
     }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                String contents = intent.getStringExtra("SCAN_RESULT");
+                String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
+                // Handle successful scan
+            } else if (resultCode == RESULT_CANCELED) {
+                // Handle cancel
+            }
+        }
+    }
+
 
     /*
         @Nullable
