@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_favorite"
+        android:icon="@drawable/ic_baseline_favorite_border_24px"
+        android:title="@string/title_favorite"/>
+    <item
+        android:id="@+id/navigation_order"
+        android:icon="@drawable/ic_baseline_assignment_24px"
+        android:title="@string/title_order"/>
+</menu>

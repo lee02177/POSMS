@@ -7,4 +7,9 @@
     <string name="title_home">Home</string>
     <string name="title_order">Order</string>
     <string name="title_notifications" translatable="false">Notifications</string>
+
+
+
+    <!-- Product Page -->
+    <string name="back">Back</string>
 </resources>

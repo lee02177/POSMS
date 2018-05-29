@@ -3,8 +3,10 @@ package johnleung.posms;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -17,15 +19,55 @@ import johnleung.posms.fragment.OrderFragment;
 
 public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
+    private Toolbar mToolBar;
+    private BottomNavigationView navigation;
+    /**
+     * Fragment
+     */
     private HomeFragment homeFragment;
     private FavoriteFragment favoriteFragment;
     private OrderFragment orderFragment;
     private NotificationsFragment notificationsFragment;
     private AccountFragment accountFragment;
+
+    private final String[] TAB_TITLE = new String[]{
+            "POSMS","My Favorite","My Order","Notification","My Account"
+    };
     private MenuItem prevMenuItem;
 
-    private static boolean isViewPageScrollable = false;
+    /**
+     * page change listener for main view pager
+     */
+    ViewPager.OnPageChangeListener mainViewPagerOnPageChangeListener = new ViewPager.OnPageChangeListener() {
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            if (prevMenuItem != null) {
+                prevMenuItem.setChecked(false);
+            }
+            else
+            {
+                navigation.getMenu().getItem(0).setChecked(false);
+            }
+            Log.d("page", "onPageSelected: "+position);
+            navigation.getMenu().getItem(position).setChecked(true);
+            prevMenuItem = navigation.getMenu().getItem(position);
+            onViewPagerChanged(position);
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+    };
+
+    /**
+     * Item selected listener for bottom navigation bar
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -33,26 +75,19 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    setTitle("POSMS");
-                    mViewPager.setCurrentItem(0);
+                    onViewPagerChanged(0);
                     return true;
-//                case R.id.navigation_dashboard:
-//                    return true;
                 case R.id.navigation_favorite:
-                    setTitle("My Favorite");
-                    mViewPager.setCurrentItem(1);
+                    onViewPagerChanged(1);
                     return true;
                 case R.id.navigation_order:
-                    setTitle("My Order");
-                    mViewPager.setCurrentItem(2);
+                    onViewPagerChanged(2);
                     return true;
                 case R.id.navigation_notifications:
-                    setTitle("Notification");
-                    mViewPager.setCurrentItem(3);
+                    onViewPagerChanged(3);
                     return true;
                 case R.id.navigation_account:
-                    setTitle("Hi, User Name!");
-                    mViewPager.setCurrentItem(4);
+                    onViewPagerChanged(4);
                     return true;
             }
             return false;
@@ -64,37 +99,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mViewPager = (ViewPager) findViewById(R.id.viewpager);
-        final BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        // setup Toolbar
+        mToolBar = (Toolbar) findViewById(R.id.mainToolbar);
+        setSupportActionBar(mToolBar);
 
         // setup view pager
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                if (prevMenuItem != null) {
-                    prevMenuItem.setChecked(false);
-                }
-                else
-                {
-                    navigation.getMenu().getItem(0).setChecked(false);
-                }
-                Log.d("page", "onPageSelected: "+position);
-                navigation.getMenu().getItem(position).setChecked(true);
-                prevMenuItem = navigation.getMenu().getItem(position);
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+        mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        mViewPager.addOnPageChangeListener(mainViewPagerOnPageChangeListener);
         setupViewPager(mViewPager);
+
+        // set up bottom navigation bar
+        navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
     private void setupViewPager(ViewPager viewPager)
@@ -113,4 +129,17 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
 
+    private void onViewPagerChanged(int position)
+    {
+        mToolBar.setTitle(TAB_TITLE[position]);
+        mViewPager.setCurrentItem(position);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mViewPager.getCurrentItem() == 0)
+        {
+            homeFragment.loadCategory();
+        }
+    }
 }
