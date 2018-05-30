@@ -55,12 +55,26 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                
+
                 if(true){
 //                if(uid.equals(input_id)){
 //                    setCurrentItem
 
 //                    main.mainViewPagerOnPageChangeListener.onPageSelected(4);
+
+//                    try {
+//                        Method m = MainActivity.class.getDeclaredMethod("onViewPagerChanged", int.class);
+//                        m.setAccessible(true);
+//                        m.invoke(main);
+//
+//                    } catch (NoSuchMethodException e) {
+//                        e.printStackTrace();
+//                    } catch (IllegalAccessException e) {
+//                        e.printStackTrace();
+//                    } catch (InvocationTargetException e) {
+//                        e.printStackTrace();
+//                    }
+                    // Login success
                     LoginActivity.super.onBackPressed();
 
                 }

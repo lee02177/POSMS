@@ -100,7 +100,9 @@ public class MainActivity extends AppCompatActivity {
                         // open login page and reject on click action
                         Intent login = new Intent(MainActivity.this, LoginActivity.class);
                         getIntent().putExtra("nologin", noLogin);
-                        startActivity(login);
+                        //startActivity(login);
+                        int requestCode = 101;
+//                        startActivityForResult("",requestCode);
                         return false;
                     }
                     else {
@@ -108,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                         onViewPagerChanged(4);
                         noLogin = false; // TODO: save with user name
                         String username = result.getString("uid", "Anonymous");
-                        
+
                         return true;
                     }
                 default:
