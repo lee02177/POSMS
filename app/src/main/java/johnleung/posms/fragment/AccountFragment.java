@@ -1,5 +1,6 @@
 package johnleung.posms.fragment;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
 public class AccountFragment extends Fragment {
+    private String TAG= "ACTION";
     private View mView;
     private Button btnScanQR;
 
@@ -31,13 +33,16 @@ public class AccountFragment extends Fragment {
 //                Toast.makeText(mView.getContext(),
 //                    "Button clicked ", Toast.LENGTH_SHORT).show();
 
-                Log.d("ACTION","Scan QR Code Button Clicked");
+                try {
+                    Log.d(TAG, "Scan QR Code Button Clicked");
 
-                Intent intent = new Intent();
-                intent.setPackage("com.google.zxing.client.android");
-                intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
-                startActivityForResult(intent, 0);
-
+                    Intent intent = new Intent();
+                    intent.setPackage("com.google.zxing.client.android");
+                    intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
+                    startActivityForResult(intent, 0);
+                } catch (ActivityNotFoundException anfe){
+                    Log.d(TAG, anfe.toString());
+                }
 
             }
         });
