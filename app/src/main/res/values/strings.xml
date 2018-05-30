@@ -10,4 +10,9 @@
     <!-- Product Page -->
     <string name="back">Back</string>
     <string name="scan_table_code">Scan Table Code</string>
+    <string name="account_table_no">Table No. :</string>
+    <string name="account_unbind_table">Unbind Table</string>
+    <string name="account_logout">Logout</string>
+    <string name="title_login">Login</string>
+    <string name="login_login_name">Login Name</string>
 </resources>
