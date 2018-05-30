@@ -1,5 +1,6 @@
 package johnleung.posms;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -18,6 +19,9 @@ import johnleung.posms.fragment.NotificationsFragment;
 import johnleung.posms.fragment.OrderFragment;
 
 public class MainActivity extends AppCompatActivity {
+
+    private LoginActivity loginActivity;
+
     private ViewPager mViewPager;
     private Toolbar mToolBar;
     private BottomNavigationView navigation;
@@ -34,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
             "POSMS","My Favorite","My Order","Notification","My Account"
     };
     private MenuItem prevMenuItem;
+
+    private static boolean isViewPageScrollable = false;
+    private static boolean noLogin = true;
 
     /**
      * page change listener for main view pager
@@ -70,6 +77,17 @@ public class MainActivity extends AppCompatActivity {
      */
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        public void onFragmentChanged() {
+            if (noLogin) {
+                Intent login = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(login);
+            }
+            else {
+                noLogin = false;
+            }
+        }
+
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
@@ -87,7 +105,13 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_account:
                     onViewPagerChanged(4);
-                    return true;
+
+                    if(noLogin)
+                        return false;
+                    else {
+                        noLogin = false;
+                        return true;
+                    }
             }
             return false;
         }
