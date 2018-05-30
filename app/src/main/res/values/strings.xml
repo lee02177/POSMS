@@ -10,6 +10,12 @@
     <string name="account_table_no">Table No. :</string>
     <string name="account_unbind_table">Unbind Table</string>
     <string name="account_logout">Logout</string>
-    <string name="title_login">Login</string>
+    <string name="account_action_sign_in">Login</string>
     <string name="login_login_name">Login Name</string>
+    <string name="prompt_password">Password</string>
+    <string name="login_btn">Login</string>
+    <string name="register_btn">Register</string>
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+
 </resources>
