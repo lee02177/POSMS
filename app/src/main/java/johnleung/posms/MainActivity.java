@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private AccountFragment accountFragment;
 
     private final String[] TAB_TITLE = new String[]{
-            "POSMS","My Favorite","My Order","Notification","My Account"
+//            "POSMS","My Favorite","My Order","Notification","My Account"
+            "POSMS","My Favorite","My Order","My Account"
     };
     private MenuItem prevMenuItem;
 
@@ -90,9 +91,10 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_order:
                     onViewPagerChanged(2);
                     return true;
-                case R.id.navigation_notifications:
-                    onViewPagerChanged(3);
-                    return true;
+//                case R.id.navigation_notifications:
+//                    favoriteFragment.loadFavorites();
+//                    onViewPagerChanged(3);
+//                    return true;
                 case R.id.navigation_account:
                     if(noLogin)
                     {
@@ -124,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewPager.addOnPageChangeListener(mainViewPagerOnPageChangeListener);
         setupViewPager(mViewPager);
-
+        
         // set up bottom navigation bar
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -136,12 +138,12 @@ public class MainActivity extends AppCompatActivity {
         homeFragment = new HomeFragment();
         favoriteFragment = new FavoriteFragment();
         orderFragment = new OrderFragment();
-        notificationsFragment = new NotificationsFragment();
+//        notificationsFragment = new NotificationsFragment();
         accountFragment = new AccountFragment();
         adapter.addFragment(homeFragment);
         adapter.addFragment(favoriteFragment);
         adapter.addFragment(orderFragment);
-        adapter.addFragment(notificationsFragment);
+//        adapter.addFragment(notificationsFragment);
         adapter.addFragment(accountFragment);
         viewPager.setAdapter(adapter);
     }
