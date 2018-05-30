@@ -14,11 +14,17 @@
     <string name="account_unbind_table">Unbind Table</string>
     <string name="account_logout">Logout</string>
     <string name="account_action_sign_in">Login</string>
-    <string name="login_login_name">Login Name</string>
+    <string name="login_name">Name</string>
     <string name="prompt_password">Password</string>
     <string name="login_btn">Login</string>
     <string name="register_btn">Register</string>
+
+    <!-- Register Page-->
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>
+    <string name="register">Register</string>
+    <string name="register_username">Username</string>
+    <string name="register_name">Name</string>
+    <string name="clear_btn">Clear</string>
 
 </resources>
