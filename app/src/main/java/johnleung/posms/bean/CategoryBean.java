@@ -4,6 +4,12 @@ public class CategoryBean {
     private int images;
     private String cate_nm;
 
+    public CategoryBean(String cate_nm, int images)
+    {
+        this.cate_nm = cate_nm;
+        this.images = images;
+    }
+
     public int getImages() {
         return images;
     }
