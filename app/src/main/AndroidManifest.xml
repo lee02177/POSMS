@@ -22,14 +22,8 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".Login"
-            android:label="POSMS">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".LoginActivity">
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
     </application>
 

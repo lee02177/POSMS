@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import johnleung.posms.Login;
+import johnleung.posms.LoginActivity;
 import johnleung.posms.R;
 
 import static android.app.Activity.RESULT_CANCELED;
@@ -35,42 +35,34 @@ public class AccountFragment extends Fragment {
 //        FLAG_LOGIN = false;
 //        FLAG_LOGIN = true;
 
-        if(FLAG_LOGIN) {
-            Log.d(TAG, "Redirect Login Page");
+
+        FLAG_LOGIN = false;
 
 
-            Intent login = new Intent(getContext(), Login.class);
-            startActivity(login);
+        title = mView.findViewById(R.id.textView);
+        title.setVisibility(View.INVISIBLE);
 
-        }
-        else {
-            FLAG_LOGIN = false;
-
-
-            title = mView.findViewById(R.id.textView);
-            title.setVisibility(View.INVISIBLE);
-
-            btnScanQR = (Button) mView.findViewById(R.id.btnScanQr);
-            btnScanQR.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+        btnScanQR = (Button) mView.findViewById(R.id.btnScanQr);
+        btnScanQR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 //                Toast.makeText(mView.getContext(),
 //                    "Button clicked ", Toast.LENGTH_SHORT).show();
 
-                    try {
-                        Log.d(TAG, "Scan QR Code Button Clicked");
+            try {
+                Log.d(TAG, "Scan QR Code Button Clicked");
 
-                        Intent intent = new Intent();
-                        intent.setPackage("com.google.zxing.client.android");
-                        intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
-                        startActivityForResult(intent, 0);
-                    } catch (ActivityNotFoundException anfe){
-                        Log.d(TAG, anfe.toString());
-                    }
+                Intent intent = new Intent();
+                intent.setPackage("com.google.zxing.client.android");
+                intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
+                startActivityForResult(intent, 0);
+            } catch (ActivityNotFoundException anfe){
+                Log.d(TAG, anfe.toString());
+            }
 
-                }
-            });
-        }
+            }
+        });
+
         return mView;
     }
 

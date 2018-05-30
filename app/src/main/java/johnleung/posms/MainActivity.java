@@ -1,5 +1,6 @@
 package johnleung.posms;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -15,6 +16,9 @@ import johnleung.posms.fragment.NotificationsFragment;
 import johnleung.posms.fragment.OrderFragment;
 
 public class MainActivity extends AppCompatActivity {
+
+    private LoginActivity loginActivity;
+
     private ViewPager mViewPager;
     private HomeFragment homeFragment;
     private OrderFragment orderFragment;
@@ -23,9 +27,21 @@ public class MainActivity extends AppCompatActivity {
     private MenuItem prevMenuItem;
 
     private static boolean isViewPageScrollable = false;
+    private static boolean noLogin = true;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        public void onFragmentChanged() {
+            if (noLogin) {
+                Intent login = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(login);
+            }
+            else {
+                noLogin = false;
+            }
+        }
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -47,7 +63,13 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_account:
                     setTitle("Hi, User Name!");
                     mViewPager.setCurrentItem(3);
-                    return true;
+
+                    if(noLogin)
+                        return false;
+                    else {
+                        noLogin = false;
+                        return true;
+                    }
             }
             return false;
         }
@@ -66,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
             }
 
             @Override
@@ -81,13 +104,17 @@ public class MainActivity extends AppCompatActivity {
                 navigation.getMenu().getItem(position).setChecked(true);
                 prevMenuItem = navigation.getMenu().getItem(position);
 
+//                onFragmentChanged();
+
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
 
             }
+
         });
+
         setupViewPager(mViewPager);
     }
 
