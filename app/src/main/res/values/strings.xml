@@ -7,9 +7,13 @@
     <string name="title_home">Home</string>
     <string name="title_order">Order</string>
     <string name="title_notifications" translatable="false">Notifications</string>
+<<<<<<< HEAD
 
 
 
     <!-- Product Page -->
     <string name="back">Back</string>
+=======
+    <string name="scan_table_code">Scan Table Code</string>
+>>>>>>> 0cae503514ac568ec45272dd6c3067c490c16538
 </resources>
