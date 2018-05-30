@@ -107,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
                         SharedPreferences result = getPreferences(0);
                         onViewPagerChanged(4);
                         noLogin = false; // TODO: save with user name
+                        String username = result.getString("uid", "Anonymous");
+                        
                         return true;
                     }
                 default:

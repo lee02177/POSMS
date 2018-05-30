@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 public class LoginActivity extends AppCompatActivity {
     private String TAG = "ACTION";
     private Button btnLogin, btnRegister;
@@ -19,6 +22,10 @@ public class LoginActivity extends AppCompatActivity {
     private String input_id, input_password;
 
     private boolean login = true;
+
+    MainActivity main = new MainActivity();
+
+//    onViewPagerChanged
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,14 +55,12 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-
-//                Log.d(TAG, "uid: " + uid);
-//                Log.d(TAG, "input_id: " + input_id);
-
+                
                 if(true){
 //                if(uid.equals(input_id)){
-//                    Intent login = new Intent(LoginActivity.this, MainActivity.class);
-//                    startActivity(login);
+//                    setCurrentItem
+
+//                    main.mainViewPagerOnPageChangeListener.onPageSelected(4);
                     LoginActivity.super.onBackPressed();
 
                 }
