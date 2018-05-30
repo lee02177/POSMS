@@ -24,7 +24,7 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="@string/login"
         android:textAlignment="center"
         android:textSize="24sp" />
 
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/id"
+            android:id="@+id/user_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/login_username"
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/pwd"
+            android:id="@+id/user_pwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/login_password"

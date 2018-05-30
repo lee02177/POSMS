@@ -1,6 +1,7 @@
 package johnleung.posms;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -100,13 +101,18 @@ public class MainActivity extends AppCompatActivity {
                     {
                         // open login page and reject on click action
                         Intent login = new Intent(MainActivity.this, LoginActivity.class);
+                        getIntent().putExtra("nologin", noLogin);
                         startActivity(login);
                         return false;
                     }
-
-                    onViewPagerChanged(4);
-                    noLogin = false; // TODO: save with user name
-                    return true;
+                    else {
+                        SharedPreferences result = getPreferences(0);
+                        onViewPagerChanged(4);
+                        noLogin = false; // TODO: save with user name
+                        String username = result.getString("uid", "Anonymous");
+                        
+                        return true;
+                    }
                 default:
                     return false;
             }
