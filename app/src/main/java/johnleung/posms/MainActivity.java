@@ -78,16 +78,6 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-        public void onFragmentChanged() {
-            if (noLogin) {
-                Intent login = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(login);
-            }
-            else {
-                noLogin = false;
-            }
-        }
-
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
@@ -104,16 +94,20 @@ public class MainActivity extends AppCompatActivity {
                     onViewPagerChanged(3);
                     return true;
                 case R.id.navigation_account:
-                    onViewPagerChanged(4);
-
                     if(noLogin)
+                    {
+                        // open login page and reject on click action
+                        Intent login = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(login);
                         return false;
-                    else {
-                        noLogin = false;
-                        return true;
                     }
+
+                    onViewPagerChanged(4);
+                    noLogin = false; // TODO: save with user name
+                    return true;
+                default:
+                    return false;
             }
-            return false;
         }
     };
 
