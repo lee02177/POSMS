@@ -12,9 +12,13 @@ import android.widget.Button;
 
 import johnleung.posms.R;
 
-public class LoginFragment extends AccountFragment {
+public class LoginFragment extends Fragment {
     private static final String TAG = "ACTION";
     private View mView;
+
+    public LoginFragment() {
+//        onCreateView(getLayoutInflater(),contain);
+    }
 
 
     @Override
